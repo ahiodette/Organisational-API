@@ -10,14 +10,14 @@ import org.sql2o.Sql2oException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sql2oNewsDao implements NewsDao {
+public class Sql2oNewsDao  {
     private final Sql2o sql2o;
 
     public Sql2oNewsDao(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 
-    @Override
+//    @Override
     public void add(News news) {
         String sql = "INSERT INTO news (name) VALUES (:name)";
         try (Connection con = DB.sql2o.open()) {
@@ -31,7 +31,7 @@ public class Sql2oNewsDao implements NewsDao {
         }
     }
 
-    @Override
+//    @Override
     public List<News> getAll() {
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery("SELECT * FROM news")
@@ -40,7 +40,7 @@ public class Sql2oNewsDao implements NewsDao {
 
     }
 
-    @Override
+//    @Override
     public void deleteById(int id) {
         String sql = "DELETE from news WHERE id=:id";
         String deleteJoin = "DELETE from department_news WHERE newsid = :newsid";
@@ -56,7 +56,7 @@ public class Sql2oNewsDao implements NewsDao {
         }
     }
 
-    @Override
+//    @Override
     public void clearAll() {
         String sql = "DELETE from news";
         try (Connection con = DB.sql2o.open()) {
@@ -66,8 +66,8 @@ public class Sql2oNewsDao implements NewsDao {
         }
     }
 
-    @Override
-    public void addNewsToDepartment(News news, Department department){
+//    @Override
+    public void addNewsToDept(News news, Department department){
         String sql = "INSERT INTO department_news (departmentid, newsid) VALUES (:departmentId, :newsId)";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
@@ -79,8 +79,8 @@ public class Sql2oNewsDao implements NewsDao {
         }
     }
 
-    @Override
-    public List<Department> getAllDepartmentsForANews(int newsId) {
+//    @Override
+    public List<Department> getAllDeptsForNews(int newsId) {
         List<Department> departments = new ArrayList();
         String joinQuery = "SELECT departmentid FROM department_news WHERE newsid = :newsid";
 
@@ -101,7 +101,7 @@ public class Sql2oNewsDao implements NewsDao {
         return departments;
     }
 
-    @Override
+//    @Override
     public News findById(int id) {
         try(Connection con = sql2o.open()){
             return con.createQuery("SELECT * FROM news WHERE id = :id")

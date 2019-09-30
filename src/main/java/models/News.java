@@ -37,10 +37,10 @@ public class News {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        News news1 = (News) o;
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        News news1 = (News) obj;
         return departId == news1.departId &&
                 id == news1.id &&
                 Objects.equals(news, news1.news);

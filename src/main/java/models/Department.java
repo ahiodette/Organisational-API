@@ -5,13 +5,13 @@ import java.util.Objects;
 public class Department {
     private String depName;
     private String depDescr;
-    private int size;
+    private int depSize;
     private int depId;
 
     public Department(String depName, String depDescr, int size) {
         this.depName = depName;
         this.depDescr = depDescr;
-        this.size = size;
+        this.depSize = size;
     }
 
     public String getDepName() {
@@ -22,8 +22,8 @@ public class Department {
         return depDescr;
     }
 
-    public int getSize() {
-        return size;
+    public int getDepSize() {
+        return depSize;
     }
 
     public int getDepId() {
@@ -38,8 +38,8 @@ public class Department {
         this.depDescr = depDescr;
     }
 
-    public void setSize(int size) {
-        this.size = size;
+    public void setDepSize(int depSize) {
+        this.depSize = depSize;
     }
 
     public void setDepId(int depId) {
@@ -51,7 +51,7 @@ public class Department {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
-        return size == that.size &&
+        return depSize == that.depSize &&
                 depId == that.depId &&
                 Objects.equals(depName, that.depName) &&
                 Objects.equals(depDescr, that.depDescr);
@@ -59,6 +59,6 @@ public class Department {
 
     @Override
     public int hashCode() {
-        return Objects.hash(depName, depDescr, size, depId);
+        return Objects.hash(depName, depDescr, depSize, depId);
     }
 }

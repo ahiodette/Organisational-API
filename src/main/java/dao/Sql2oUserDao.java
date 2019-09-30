@@ -9,14 +9,14 @@ import org.sql2o.Sql2oException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sql2oUserDao implements UserDao{
+public class Sql2oUserDao {
     private final Sql2o sql2o;
 
     public Sql2oUserDao(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 
-    @Override
+//    @Override
     public void add(User user) {
         String sql = "INSERT INTO users (name,duties,position,departmentId) VALUES (:name,:duties,:position,:departmentId);";
 
@@ -32,7 +32,7 @@ public class Sql2oUserDao implements UserDao{
     }
 
 
-    @Override
+//    @Override
     public List<User> getAll() {
         String sql = "SELECT * FROM users";
         try (Connection con = DB.sql2o.open()) {
@@ -41,24 +41,24 @@ public class Sql2oUserDao implements UserDao{
         }
     }
 
-    @Override
-    public List<User> getAllUsersByDepartment(int departmentId) {
+//    @Override
+    public List<User> getAllUsersByDepts(int departmentId) {
         try (Connection con = DB.sql2o.open()) {
-            return con.createQuery("SELECT * FROM users WHERE departmentId = :departmentId")
+            return con.createQuery("SELECT * FROM users WHERE depId = :depId")
                     .addParameter("departmentId", departmentId)
                     .executeAndFetch(User.class);
         }
     }
 
-    @Override
-    public List<User> getUsersByDept(int departmentId){
-        List<User> unsortedUsers = getAllUsersByDepartment(departmentId);
+//    @Override
+    public List<User> getUsersByDepts(int departmentId){
+        List<User> unsortedUsers = getAllUsersByDepts(departmentId);
                 List<User> sortedUsers = new ArrayList<>();
                 int i=1;
                 return sortedUsers;
     }
 
-    @Override
+//    @Override
     public void deleteById(int id) {
         String sql = "DELETE from users WHERE id=:id";
         try (Connection con = DB.sql2o.open()) {
@@ -70,7 +70,7 @@ public class Sql2oUserDao implements UserDao{
         }
     }
 
-    @Override
+//    @Override
     public void clearAll() {
         String sql = "DELETE from users";
         try (Connection con = sql2o.open()) {

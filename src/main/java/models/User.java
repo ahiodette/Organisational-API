@@ -9,7 +9,7 @@ public class User {
     private int id;
     private int departId;
 
-    public User(String userName, String role, String position, int departId) {
+    public User(String userName, String role, String post, int departId) {
         this.userName = userName;
         this.role = role;
         this.post = post;

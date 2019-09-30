@@ -10,7 +10,7 @@ import org.sql2o.Sql2oException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sql2oDepartmentDao implements DepartmentDao{
+public class Sql2oDepartmentDao {
 
     private final Sql2o sql2o;
 
@@ -18,7 +18,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
         this.sql2o = sql2o;
     }
 
-    @Override
+//    @Override
     public void add(Department department){
         String sql = "INSERT INTO departments (dep_name,dep_desc,number_of_employees) VALUES (:depName, :depDescr, :size)";
         try (Connection con = DB.sql2o.open()){
@@ -33,7 +33,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
         }
     }
 
-    @Override
+//    @Override
     public List<Department> getAll() {
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery("SELECT * FROM departments")
@@ -41,7 +41,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
         }
     }
 
-    @Override
+//    @Override
     public Department findById(int id) {
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery("SELECT * FROM departments WHERE id = :id")
@@ -51,14 +51,14 @@ public class Sql2oDepartmentDao implements DepartmentDao{
     }
 
 //    @Override
-    public void update(int newId, String newName, String newDescription, int newNumberOfEmployees) {
+    public void update(int newId, String newDepName, String newDescr, int newSize) {
         String sql = "UPDATE departments SET (dep_name, dep_descr, number_of_employees) = (:depName, :depDescr, :size) WHERE id=:id";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", newId)
-                    .addParameter("depName", newName)
-                    .addParameter("depDescr", newDescription)
-                    .addParameter("size", newNumberOfEmployees)
+                    .addParameter("depName", newDepName)
+                    .addParameter("depDescr", newDescr)
+                    .addParameter("size", newSize)
                     .throwOnMappingFailure(false)
                     .executeUpdate();
         } catch (Sql2oException ex) {
@@ -66,9 +66,9 @@ public class Sql2oDepartmentDao implements DepartmentDao{
         }
     }
 
-    @Override
+//    @Override
     public void deleteById(int id) {
-        String sql = "DELETE from department WHERE id = :id";
+        String sql = "DELETE from departments WHERE id = :id";
         String deleteJoin = "DELETE from department_news WHERE departmentId = :departmentId";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
@@ -83,7 +83,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
         }
     }
 
-    @Override
+//    @Override
     public void clearAll() {
         String sql = "DELETE from departments";
         try (Connection con = DB.sql2o.open()) {
@@ -94,7 +94,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
     }
 
 //    @Override
-    public void addDepartmentToNews(Department department, News news){
+    public void addDeptToNews(Department department, News news){
         String sql = "INSERT INTO department_news (departmentId, newsId) VALUES (:departmentId, :newsId)";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
@@ -107,7 +107,7 @@ public class Sql2oDepartmentDao implements DepartmentDao{
     }
 
 //    @Override
-    public List<News> getAllNewsByDepartment(int departmentId){
+    public List<News> getAllNewsByDept(int departmentId){
         List<News> news = new ArrayList(); //empty list
         String joinQuery = "SELECT newsId FROM department_news WHERE departmentId = :departmentId";
 
