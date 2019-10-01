@@ -16,9 +16,8 @@ public class Sql2oUserDao {
         this.sql2o = sql2o;
     }
 
-//    @Override
     public void add(User user) {
-        String sql = "INSERT INTO users (name,duties,position,departmentId) VALUES (:name,:duties,:position,:departmentId);";
+        String sql = "INSERT INTO users (userName,role,position,deptId) VALUES (:userName,:role,:post,:deptId);";
 
         try (Connection con = DB.sql2o.open()) {
             int id = (int) con.createQuery(sql, true)
@@ -32,7 +31,6 @@ public class Sql2oUserDao {
     }
 
 
-//    @Override
     public List<User> getAll() {
         String sql = "SELECT * FROM users";
         try (Connection con = DB.sql2o.open()) {
@@ -41,16 +39,14 @@ public class Sql2oUserDao {
         }
     }
 
-//    @Override
     public List<User> getAllUsersByDepts(int departmentId) {
         try (Connection con = DB.sql2o.open()) {
             return con.createQuery("SELECT * FROM users WHERE depId = :depId")
-                    .addParameter("departmentId", departmentId)
+                    .addParameter("deptId", departmentId)
                     .executeAndFetch(User.class);
         }
     }
 
-//    @Override
     public List<User> getUsersByDepts(int departmentId){
         List<User> unsortedUsers = getAllUsersByDepts(departmentId);
                 List<User> sortedUsers = new ArrayList<>();
@@ -58,7 +54,6 @@ public class Sql2oUserDao {
                 return sortedUsers;
     }
 
-//    @Override
     public void deleteById(int id) {
         String sql = "DELETE from users WHERE id=:id";
         try (Connection con = DB.sql2o.open()) {
@@ -70,7 +65,6 @@ public class Sql2oUserDao {
         }
     }
 
-//    @Override
     public void clearAll() {
         String sql = "DELETE from users";
         try (Connection con = sql2o.open()) {

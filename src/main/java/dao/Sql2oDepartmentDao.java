@@ -20,7 +20,7 @@ public class Sql2oDepartmentDao {
 
 //    @Override
     public void add(Department department){
-        String sql = "INSERT INTO departments (dep_name,dep_desc,number_of_employees) VALUES (:depName, :depDescr, :size)";
+        String sql = "INSERT INTO departments (depName,depDesc,depSize) VALUES (:depName, :depDescr, :depSize)";
         try (Connection con = DB.sql2o.open()){
             int id = (int) con.createQuery(sql, true)
                     .bind(department)
@@ -52,7 +52,7 @@ public class Sql2oDepartmentDao {
 
 //    @Override
     public void update(int newId, String newDepName, String newDescr, int newSize) {
-        String sql = "UPDATE departments SET (dep_name, dep_descr, number_of_employees) = (:depName, :depDescr, :size) WHERE id=:id";
+        String sql = "UPDATE departments SET (depName, depDescr, depSize) = (:depName, :depDescr, :depSize) WHERE id=:id";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", newId)
@@ -69,7 +69,7 @@ public class Sql2oDepartmentDao {
 //    @Override
     public void deleteById(int id) {
         String sql = "DELETE from departments WHERE id = :id";
-        String deleteJoin = "DELETE from department_news WHERE departmentId = :departmentId";
+        String deleteJoin = "DELETE from department_news WHERE deptId = :deptId";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
@@ -95,10 +95,10 @@ public class Sql2oDepartmentDao {
 
 //    @Override
     public void addDeptToNews(Department department, News news){
-        String sql = "INSERT INTO department_news (departmentId, newsId) VALUES (:departmentId, :newsId)";
+        String sql = "INSERT INTO department_news (deptId, newsId) VALUES (:deptId, :newsId)";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("departmentId", department.getDepId())
+                    .addParameter("deptId", department.getDepId())
                     .addParameter("newsId", news.getId())
                     .executeUpdate();
         } catch (Sql2oException ex){
@@ -109,11 +109,11 @@ public class Sql2oDepartmentDao {
 //    @Override
     public List<News> getAllNewsByDept(int departmentId){
         List<News> news = new ArrayList(); //empty list
-        String joinQuery = "SELECT newsId FROM department_news WHERE departmentId = :departmentId";
+        String joinQuery = "SELECT newsId FROM department_news WHERE deptId = :deptId";
 
         try (Connection con = DB.sql2o.open()) {
             List<Integer> allNewsIds = con.createQuery(joinQuery)
-                    .addParameter("departmentId", departmentId)
+                    .addParameter("deptId", departmentId)
                     .executeAndFetch(Integer.class);
             for (Integer foodId : allNewsIds){
                 String newsQuery = "SELECT * FROM news WHERE id = :newsId";

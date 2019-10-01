@@ -68,10 +68,10 @@ public class Sql2oNewsDao  {
 
 //    @Override
     public void addNewsToDept(News news, Department department){
-        String sql = "INSERT INTO department_news (departmentid, newsid) VALUES (:departmentId, :newsId)";
+        String sql = "INSERT INTO department_news (deptId, newsid) VALUES (:deptId, :newsId)";
         try (Connection con = DB.sql2o.open()) {
             con.createQuery(sql)
-                    .addParameter("departmentid", department.getDepId())
+                    .addParameter("deptId", department.getDepId())
                     .addParameter("newsid", news.getId())
                     .executeUpdate();
         } catch (Sql2oException ex){
@@ -82,17 +82,17 @@ public class Sql2oNewsDao  {
 //    @Override
     public List<Department> getAllDeptsForNews(int newsId) {
         List<Department> departments = new ArrayList();
-        String joinQuery = "SELECT departmentid FROM department_news WHERE newsid = :newsid";
+        String joinQuery = "SELECT deptId FROM department_news WHERE newsid = :newsid";
 
         try (Connection con = DB.sql2o.open()) {
             List<Integer> allDepartmentIds = con.createQuery(joinQuery)
                     .addParameter("newsId", newsId)
                     .executeAndFetch(Integer.class); //what is happening in the lines above?
             for (Integer departmentId : allDepartmentIds){
-                String departmentQuery = "SELECT * FROM departments WHERE id = :departmentid";
+                String departmentQuery = "SELECT * FROM departments WHERE id = :deptId";
                 departments.add(
                         con.createQuery(departmentQuery)
-                                .addParameter("departmentid", departmentId)
+                                .addParameter("deptId", departmentId)
                                 .executeAndFetchFirst(Department.class));
             } //why are we doing a second sql query - set?
         } catch (Sql2oException ex){
