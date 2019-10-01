@@ -1,0 +1,32 @@
+{{#partial "content"}}
+    <h2>ALL DEPARTMENTS</h2>
+
+    <div class="container">
+        <div class="row" style="font-size: 2em;">
+            <div class="col-sm-2">
+                Department name
+            </div>
+            <div class="col-sm-2">
+                Department description
+            </div>
+            <div class="col-sm-2">
+                Number of employees
+            </div>
+        </div>
+        <hr >
+        {{#each depts}}
+        <div class="row">
+            <div class="col-sm-2">
+                {{depName}}
+            </div>
+            <div class="col-sm-2">
+                {{depDescr}}
+            </div>
+            <div class="col-sm-2">
+                {{depSize}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+{{/partial}}
+{{>layout.hbs}}

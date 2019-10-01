@@ -3,21 +3,32 @@ package models;
 import java.util.Objects;
 
 public class News {
-    private String news;
+
     private int departId;
+    private String content;
+    private String header;
     private int id;
 
-    public News(String news, int departId) {
-        this.news = news;
+    public News(int departId, String content, String header) {
         this.departId = departId;
+        this.content = content;
+        this.header = header;
     }
 
-    public String getNews() {
-        return news;
+    public String getContent() {
+        return content;
     }
 
-    public void setNews(String news) {
-        this.news = news;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
     }
 
     public int getDepartId() {
@@ -37,17 +48,18 @@ public class News {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        News news1 = (News) obj;
-        return departId == news1.departId &&
-                id == news1.id &&
-                Objects.equals(news, news1.news);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        News news = (News) o;
+        return departId == news.departId &&
+                id == news.id &&
+                Objects.equals(content, news.content) &&
+                Objects.equals(header, news.header);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(news, departId, id);
+        return Objects.hash(departId, content, header, id);
     }
 }

@@ -1,0 +1,31 @@
+{{#partial}}
+    <h2>LIST OF ALL USERS BY DEPARTMENTS</h2>
+
+    <div class="container">
+        <div class="row" style="font-size: 2em;">
+            <div class="col-sm-2">
+                Employee name
+            </div>
+            <div class="col-sm-2">
+                Department ID
+            </div>
+            <div class="col-sm-2">
+                Position
+            </div>
+        </div>
+        <hr >
+        {{#each users}}
+            <div class="row">
+                <div class="col-sm-2">
+                    {{userName}}
+                </div>
+                <div class="col-sm-2">
+                    {{depId}}
+                </div>
+                <div class="col-sm-2">
+                    {{post}}
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{/partial}}

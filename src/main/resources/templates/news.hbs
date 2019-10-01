@@ -1,0 +1,18 @@
+{{#partial "content"}}
+
+    {{#if news}}
+    {{#each}}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ depId }} | {{ header }}</h5>
+                    <p class="card-text">{{ content }}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+    {{/each}}
+    {{else}}
+        <p class="text-center">No news available</p>
+    {{/if}}
+{{/partial}}
+
+{{>layout.hbs}}

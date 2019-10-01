@@ -6,7 +6,7 @@ public class Department {
     private String depName;
     private String depDescr;
     private int depSize;
-    private int depId;
+    private int id;
 
     public Department(String depName, String depDescr, int size) {
         this.depName = depName;
@@ -27,7 +27,7 @@ public class Department {
     }
 
     public int getDepId() {
-        return depId;
+        return id;
     }
 
     public void setDepName(String depName) {
@@ -43,7 +43,7 @@ public class Department {
     }
 
     public void setDepId(int depId) {
-        this.depId = depId;
+        this.id = depId;
     }
 
     @Override
@@ -52,13 +52,13 @@ public class Department {
         if (o == null || getClass() != o.getClass()) return false;
         Department that = (Department) o;
         return depSize == that.depSize &&
-                depId == that.depId &&
+                id == that.id &&
                 Objects.equals(depName, that.depName) &&
                 Objects.equals(depDescr, that.depDescr);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(depName, depDescr, depSize, depId);
+        return Objects.hash(depName, depDescr, depSize, id);
     }
 }
