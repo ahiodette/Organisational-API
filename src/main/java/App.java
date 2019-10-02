@@ -43,11 +43,9 @@ public class App {
             String depname = request.queryParams("depname");
             String depdescr = request.queryParams("depdescr");
             int depsize = Integer.parseInt(request.queryParams("depsize"));
-            System.out.println();
+
             Department depts = new Department(depname, depdescr, depsize);
-            System.out.println(depsize);
-            System.out.println(depts);
-            System.out.println(depname);
+
             model.put("depname", depname);
             model.put("depdescr", depdescr);
             model.put("depsize", depsize);
