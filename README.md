@@ -23,6 +23,9 @@ When it is said manipulation, it means registering(create), deleting and updatin
         * CREATE TABLE department_users(id SERIAL, userid INTEGER, deptid INTEGER);
         * CREATE TABLE department_news(id SERIAL, newsid INTEGER, deptid INTEGER);
 
+## Link to the live site:
+https://odette-organisational-api.herokuapp.com/
+
 ## Known bugs
 Even though the app should help the user to delete and update the info; for today, it is not possible to do so on the UI unless he/she goes through the database, but that issue will be resolved ASAP!
 
