@@ -31,6 +31,6 @@ Even though the app should help the user to delete and update the info; for toda
 In case you may need any support about this app, do not hesitate to contact the developer on ahiode6@gmail.com and 
 [linkedIn](https://www.linkedin.com/in/odette-ahishakiye-096a39188/)
 
-## Licence
+## Licence and copyright
 
-Check this [Licence](https://github.com/ahiodette/Organisational-API/blob/master/LICENSE) for the licence information
+ [Click here](https://github.com/ahiodette/Organisational-API/blob/master/LICENSE) for the licence information
