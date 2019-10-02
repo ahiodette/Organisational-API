@@ -33,4 +33,4 @@ In case you may need any support about this app, do not hesitate to contact the 
 
 ## Licence and copyright
 
- [Click here](https://github.com/ahiodette/Organisational-API/blob/master/LICENSE) for the licence information
+This app is licenced by [MIT](https://github.com/ahiodette/Organisational-API/blob/master/LICENSE) 
