@@ -1,5 +1,7 @@
 {{#partial "content"}}
-    <h2>ALL DEPARTMENTS</h2>
+    <div class="text-center">
+    <h2 >ALL DEPARTMENTS</h2>
+        <hr>
 
     <div class="container">
         <div class="row" style="font-size: 2em;">
@@ -14,19 +16,27 @@
             </div>
         </div>
         <hr >
-        {{#each depts}}
+{{#if departments}}
+        {{#each departments}}
         <div class="row">
             <div class="col-sm-2">
-                {{depName}}
+                {{depname}}
             </div>
             <div class="col-sm-2">
-                {{depDescr}}
+                {{depdescr}}
             </div>
             <div class="col-sm-2">
-                {{depSize}}
+                {{depsize}}
             </div>
         </div>
         {{/each}}
+{{/if}}
+
+    </div><br><br>
+
+
+        <a class="btn btn-warning stretched-link" href="/depts/new">ADD NEW DEPARTMENT</a>
+        <a class="btn btn-primary stretched-link" href="/">BACK</a><br><br>
     </div>
 {{/partial}}
 {{>layout.hbs}}

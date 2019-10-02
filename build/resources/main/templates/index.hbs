@@ -1,8 +1,30 @@
 {{#partial "content"}}
-   <div class="page-header">
-       <a href="/" class="btn btn-success stretched-link">Users</a>
-       <a href="/" class="btn btn-warning stretched-link">Departments</a>
-       <a href="/" class="btn btn-success stretched-link">News</a>
-   </div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="/">HOME</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/departments" role="button" aria-haspopup="true" aria-expanded="false">DEPARTMENTS</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/depts/new">Add a department</a>
+                <a class="dropdown-item" href="/departments">View all departments</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/users" role="button" aria-haspopup="true" aria-expanded="false">USERS</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/user/new">Add a user</a>
+                <a class="dropdown-item" href="/users">View all users</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/news" role="button" aria-haspopup="true" aria-expanded="false">NEWS</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/news/new">Add news</a>
+                <a class="dropdown-item" href="/news">View all news</a>
+            </div>
+        </li>
+    </ul>
+
 {{/partial}}
 {{>layout.hbs}}
